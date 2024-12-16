@@ -1,6 +1,9 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
@@ -60,6 +63,69 @@ public class Engine extends JFrame {
 		this.setSize(400,400);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		this.contentPanel = new JPanel();
+		this.contentPanel.setLayout(new BorderLayout());
+		this.displayPanel = new JPanel();
+		this.displayPanel.setLayout(new FlowLayout());
+		this.buttonPanel = new JPanel();
+		this.buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
+		
+		
+		
+		
+		this.display = new JTextField(20);
+		this.displayPanel.add(display);
+		
+		
+		
+		
+		
+		n0 = new JButton("0");
+		n1 = new JButton("1");
+		n2 = new JButton("2");
+		n3 = new JButton("3");
+		n4 = new JButton("4");
+		n5 = new JButton("5");
+		n6 = new JButton("6");
+		n7 = new JButton("7");
+		n8 = new JButton("8");
+		n9 = new JButton("9");
+		divide = new JButton("/");
+		multiply = new JButton("x");
+		subtract = new JButton("-");
+		add = new JButton("+");
+		equal = new JButton("=");
+		reset = new JButton("C");
+
+		this.buttonPanel.add(n7);
+		this.buttonPanel.add(n8);
+		this.buttonPanel.add(n9);
+		this.buttonPanel.add(divide);
+		this.buttonPanel.add(n4);
+		this.buttonPanel.add(n5);
+		this.buttonPanel.add(n6);
+		this.buttonPanel.add(multiply);
+		this.buttonPanel.add(n1);
+		this.buttonPanel.add(n2);
+		this.buttonPanel.add(n3);
+		this.buttonPanel.add(subtract);
+		this.buttonPanel.add(reset);
+		this.buttonPanel.add(n0);
+		this.buttonPanel.add(equal);
+		this.buttonPanel.add(add);
+
+		this.contentPanel.add(this.displayPanel, BorderLayout.NORTH);
+		this.contentPanel.add(this.buttonPanel, BorderLayout.SOUTH);
+		
+		
+		this.panelPrincipal.add(this.contentPanel, BorderLayout.CENTER);
+		
+		
+		//this.panelPrincipal.add(contentPanel);
+		
+		
+		
 	}
 	
 	public void setFeaturesButton(JButton _button, ButtonType _type) {
