@@ -2,9 +2,12 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,7 +63,7 @@ public class Engine extends JFrame {
 		
 		this.panelPrincipal = this.getContentPane();
 		this.setLocation(50, 100);
-		this.setSize(400,400);
+		this.setSize(350,350);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -70,6 +73,7 @@ public class Engine extends JFrame {
 		this.displayPanel.setLayout(new FlowLayout());
 		this.buttonPanel = new JPanel();
 		this.buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
+		this.buttonPanel.setPreferredSize(new Dimension(200, 200));
 		
 		
 		
@@ -79,25 +83,23 @@ public class Engine extends JFrame {
 		
 		
 		
-		
-		
-		n0 = new JButton("0");
-		n1 = new JButton("1");
-		n2 = new JButton("2");
-		n3 = new JButton("3");
-		n4 = new JButton("4");
-		n5 = new JButton("5");
-		n6 = new JButton("6");
-		n7 = new JButton("7");
-		n8 = new JButton("8");
-		n9 = new JButton("9");
-		divide = new JButton("/");
-		multiply = new JButton("x");
-		subtract = new JButton("-");
-		add = new JButton("+");
+			n0 = new JButton("0");
+			n1 = new JButton("1");
+			n2 = new JButton("2");
+			n3 = new JButton("3");
+			n4 = new JButton("4");
+			n5 = new JButton("5");
+			n6 = new JButton("6");
+			n7 = new JButton("7");
+			n8 = new JButton("8");
+			n9 = new JButton("9");
+			divide = new JButton("/");
+			multiply = new JButton("x");
+			subtract = new JButton("-");
+			add = new JButton("+");
 		equal = new JButton("=");
 		reset = new JButton("C");
-
+		
 		this.buttonPanel.add(n7);
 		this.buttonPanel.add(n8);
 		this.buttonPanel.add(n9);
@@ -114,10 +116,110 @@ public class Engine extends JFrame {
 		this.buttonPanel.add(n0);
 		this.buttonPanel.add(equal);
 		this.buttonPanel.add(add);
+		
+		
+		n0.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "0");
+		    }
+		});
 
+		n1.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "1");
+		    }
+		});
+
+		n2.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "2");
+		    }
+		});
+
+		n3.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "3");
+		    }
+		});
+
+		n4.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "4");
+		    }
+		});
+
+		n5.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "5");
+		    }
+		});
+
+		n6.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "6");
+		    }
+		});
+
+		n7.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "7");
+		    }
+		});
+
+		n8.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "8");
+		    }
+		});
+
+		n9.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "9");
+		    }
+		});
+
+		divide.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "/");
+		    }
+		});
+
+		multiply.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "x");
+		    }
+		});
+
+		subtract.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "-");
+		    }
+		});
+
+		add.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        display.setText(display.getText() + "+");
+		    }
+		});
+		
+		
+		
 		this.contentPanel.add(this.displayPanel, BorderLayout.NORTH);
 		this.contentPanel.add(this.buttonPanel, BorderLayout.SOUTH);
-		
 		
 		this.panelPrincipal.add(this.contentPanel, BorderLayout.CENTER);
 		
