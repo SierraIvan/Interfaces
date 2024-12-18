@@ -3,16 +3,15 @@ package main;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Engine extends JFrame implements ActionListener {
     private JPanel contentPanel, displayPanel, buttonPanel;
     private JTextField display;
     private JButton n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, divide, multiply, subtract, add, equal, reset;
     private int num1, num2, result;
-    private char operation; 
-
-
+    private char operation;
     public Engine() {
         setSettings();
     }
@@ -21,11 +20,12 @@ public class Engine extends JFrame implements ActionListener {
         this.setSize(350, 350);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+
         contentPanel = new JPanel(new BorderLayout());
         displayPanel = new JPanel(new FlowLayout());
         buttonPanel = new JPanel(new GridLayout(4, 4, 5, 5));
         display = new JTextField(20);
+        display.setEditable(false);
         display.setFont(new Font("Arial", Font.PLAIN, 18));
         displayPanel.add(display);
 
@@ -54,17 +54,44 @@ public class Engine extends JFrame implements ActionListener {
         contentPanel.add(displayPanel, BorderLayout.NORTH);
         contentPanel.add(buttonPanel, BorderLayout.CENTER);
         this.add(contentPanel);
-        
+        this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        Object source = e.getSource();
+        String input_text = e.getActionCommand();
+
+        if(source == equal) {
+        	String[] partes = display.getText().split(" ");
+        	
+        	num1 = Integer.parseInt(partes[0]);
+            operation = partes[1].charAt(0);
+            num2 = Integer.parseInt(partes[2]);
+            operation();
+            display.setText(String.valueOf(result) + " ");
+        }
+        else
+        	
+        	display.setText(display.getText() + input_text + " ");
     }
 
     public void operation() {
+    	switch(operation) {
+    	case '+':
+            result = num1 + num2;
+            break;
+    	case '-':
+    		result = num1 - num2;
+    		break;
+    	case 'x':
+            result = num1 * num2;
+            break;
+    	case '/':
+    		result = num1 / num2;
+    		break;
+    	}
        
-
     }
 
     private JButton createButton(String text) {
