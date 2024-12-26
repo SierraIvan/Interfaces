@@ -16,6 +16,7 @@ public class Engine extends JFrame implements ActionListener {
 
 	public Engine() {
 		setSettings();
+		addActionEvent();
 	}
 
 	public void setSettings() {
@@ -31,22 +32,22 @@ public class Engine extends JFrame implements ActionListener {
 		display.setFont(new Font("Arial", Font.PLAIN, 18));
 		displayPanel.add(display);
 
-		n0 = createButton("0");
-		n1 = createButton("1");
-		n2 = createButton("2");
-		n3 = createButton("3");
-		n4 = createButton("4");
-		n5 = createButton("5");
-		n6 = createButton("6");
-		n7 = createButton("7");
-		n8 = createButton("8");
-		n9 = createButton("9");
-		divide = createButton("/");
-		multiply = createButton("x");
-		subtract = createButton("-");
-		add = createButton("+");
-		equal = createButton("=");
-		reset = createButton("C");
+		n0 = new JButton("0");
+		n1 = new JButton("1");
+		n2 = new JButton("2");
+		n3 = new JButton("3");
+		n4 = new JButton("4");
+		n5 = new JButton("5");
+		n6 = new JButton("6");
+		n7 = new JButton("7");
+		n8 = new JButton("8");
+		n9 = new JButton("9");
+		divide = new JButton("/");
+		multiply = new JButton("x");
+		subtract = new JButton("-");
+		add = new JButton("+");
+		equal = new JButton("=");
+		reset = new JButton("C");
 
 		JButton[] buttons = { n7, n8, n9, divide, n4, n5, n6, multiply, n1, n2, n3, subtract, reset, n0, equal, add };
 		for (JButton button : buttons) {
@@ -61,29 +62,36 @@ public class Engine extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-		String input_text = e.getActionCommand();
+        Object source = e.getSource();
+        String input_text = e.getActionCommand();
 
-		if(source == reset) {
-			display.setText("");
-			
-		}
-		
-		else if (source == equal) {
-			
-			String[] partes = display.getText().split(" ");
-
-			num1 = Integer.parseInt(partes[0]);
-			operation = partes[1].charAt(0);
-			num2 = Integer.parseInt(partes[2]);
-			operation();
-			display.setText(String.valueOf(result));
-		} else if (source == add || source == divide || source == multiply || source == subtract) {
-			display.setText(display.getText() + " " + input_text + " ");
-
-		} else
-			display.setText(display.getText() + input_text);
-	}
+        if (source == reset) {
+            display.setText("");
+            
+        } else if (source == equal) {
+            try {
+                String[] partes = display.getText().split(" ");
+                num1 = Integer.parseInt(partes[0]);
+                operation = partes[1].charAt(0);
+                num2 = Integer.parseInt(partes[2]);
+                operation();
+                display.setText(String.valueOf(result));
+            } catch (Exception ex) {
+                display.setText("Error");
+            }
+        } else if (source == add || source == divide || source == multiply) {
+            display.setText(display.getText() + " " + input_text + " ");
+            
+        } else if (source == subtract) {
+            if (display.getText().isEmpty() || display.getText().endsWith(" ")) {
+                display.setText(display.getText() + "-");
+            } else {
+                display.setText(display.getText() + " " + input_text + " ");
+            }
+        } else {
+            display.setText(display.getText() + input_text);
+        }
+    }
 
 	public void operation() {
 		switch (operation) {
@@ -108,16 +116,9 @@ public class Engine extends JFrame implements ActionListener {
 			button.addActionListener(this);
 		}
 		
-	}
-
-	
+	}	
 	public void setFeaturesButton(JButton _button, ButtonType _type){
 		
-	}
-	private JButton createButton(String text) {
-		JButton button = new JButton(text);
-		button.addActionListener(this);
-		return button;
 	}
 
 }
